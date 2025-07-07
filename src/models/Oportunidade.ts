@@ -4,5 +4,5 @@ import type Cliente from "./Cliente";
         id?: number;
         status: string;
         receita: number;
-        cliente: Cliente[] | null;
+        cliente?: Cliente | null;
     }
