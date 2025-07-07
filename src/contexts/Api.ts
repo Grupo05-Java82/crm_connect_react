@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://crm-connect.onrender.com/api',
+  baseURL: 'https://crm-connect.onrender.com',
 });
 
 // Interceptador para tratar erros globalmente
@@ -14,7 +14,7 @@ api.interceptors.response.use(
       data: error.response?.data,
     });
 
-    return Promise.reject(error); // continua propagando o erro
+    return Promise.reject(error);
   }
 );
 

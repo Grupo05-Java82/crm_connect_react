@@ -1,36 +1,57 @@
-import { Link } from "react-router-dom";
-import type Oportunidade from "../../models/Oportunidade";
+// src/components/oportunidade/CardOportunidade.tsx (Alterado com Estilização e Ícones da Lucide)
 
-interface CardOportunidadeProps {
+import type Oportunidade from "../../models/Oportunidade";
+import { DollarSign, Tag, User, Edit2, Trash2 } from "lucide-react"; // Ícones Lucide para Oportunidade
+
+export interface CardOportunidadeProps {
   oportunidade: Oportunidade;
+  onDelete: (id: number) => Promise<void>;
+  onEdit: (oportunidade: Oportunidade) => void;
 }
 
-function CardOportunidade({ oportunidade }: CardOportunidadeProps) {
+function CardOportunidade({ oportunidade, onEdit, onDelete }: CardOportunidadeProps) {
   return (
-    <div className="border flex flex-col rounded-2xl overflow-hidden justify-between">
-      <header className="py-2 px-6 bg-green-900 text-white font-bold text-2xl">
-        Oportunidade
-      </header>
-      <p className="p-8 text-3xl bg-slate-200 h-full">{oportunidade.receita}</p>
-      <p className="p-8 text-3xl bg-slate-200 h-full">{oportunidade.status}</p>
-      <p className="p-8 text-3xl bg-slate-200 h-full">{oportunidade.cliente?.nome}</p>
+    <div className="w-full max-w-[320px] h-auto p-4 bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow flex flex-col gap-4"> {/* Fundo mais escuro para contraste, estilo do card cliente */}
+      {/* Título + Ações */}
+      <div className="flex justify-between items-start">
+        <h3 className="text-white text-xl font-semibold font-['Poppins'] leading-tight break-words">
+          Oportunidade #{oportunidade.id}
+        </h3>
+        <div className="flex space-x-2">
+          <button
+            onClick={() => onEdit(oportunidade)}
+            className="text-white hover:text-gray-300"
+            title="Editar Oportunidade"
+          >
+            <Edit2 size={18} />
+          </button>
+          <button
+            onClick={() => onDelete(oportunidade.id!)}
+            className="text-white hover:text-red-300"
+            title="Deletar Oportunidade"
+          >
+            <Trash2 size={18} />
+          </button>
+        </div>
+      </div>
 
-      <div className="flex">
-        <Link
-          to={`/editaroportunidade/${oportunidade.id}`}
-          className="w-full text-slate-100 bg-gree-600 hover:bg-green-900 
-                        flex items-center justify-center py-2"
-        >
-          <button>Editar</button>
-        </Link>
+      {/* Divider */}
+      <div className="w-full h-px bg-white/20" />
 
-        <Link
-          to={`/deletaroportunidade/${oportunidade.id}`}
-          className="text-slate-100 bg-red-400 hover:bg-red-700 w-full 
-                    flex items-center justify-center"
-        >
-          <button>Deletar</button>
-        </Link>
+      {/* Informações da Oportunidade */}
+      <div className="flex flex-col gap-3 text-sm font-light text-white break-words font-['Poppins']">
+        <div className="flex items-center gap-2">
+          <Tag size={16} />
+          <span>{oportunidade.status}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <DollarSign size={16} />
+          <span>R$ {oportunidade.receita?.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <User size={16} />
+          <span>{oportunidade.cliente?.nome || "Nenhum cliente associado"}</span> {/* Acessa nome do cliente */}
+        </div>
       </div>
     </div>
   );
