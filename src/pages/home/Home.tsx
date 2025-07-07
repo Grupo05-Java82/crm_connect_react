@@ -1,76 +1,119 @@
-import { FaArrowRightLong } from "react-icons/fa6";
+import ColaboradorCard from "../../components/colaborador/ColaboradorCard";
 
 function Home() {
-  return (
-    <>
-        <div className="bg-gray-50  flex w-full pr-5 gap-20">
-            <div>
-                <img src="https://ik.imagekit.io/gqta2uhtht/representacao-da-experiencia-utilizador-e-design-da-interface%201%20(2).png" alt="Hero Home"  className="w-[800px] h-auto object-cover"/>
-            </div>
+    const membros = [
+        {
+            nome: 'Carlos Moroni',
+            cargo: 'Desenvolvedor Front-end',
+            linkedin: 'https://www.linkedin.com/in/carlosmoroni/',
+            imagem: 'https://github.com/carlosmoronisud.png',
+        },
+        {
+            nome: 'Bruno',
+            cargo: 'Designer UI/UX',
+            linkedin: 'https://www.linkedin.com/in/bruno-exemplo',
+            imagem: 'https://github.com/BrunoAlves-tech.png',
+        },
+        {
+            nome: 'Luiz',
+            cargo: 'Dev Fullstack',
+            linkedin: 'https://www.linkedin.com/in/luizhenrique-dev/',
+            imagem: 'https://github.com/luizsantos7.png',
+        },
+        {
+            nome: 'Murilo',
+            cargo: 'Product Owner',
+            linkedin: 'https://www.linkedin.com/in/murilomattosm/',
+            imagem: 'https://github.com/Matttosz.png',
+        },
+        {
+            nome: 'Natan',
+            cargo: 'QA Tester',
+            linkedin: 'https://www.linkedin.com/in/natan-macedo/',
+            imagem: 'https://github.com/natanmac.png',
+        },
+        {
+            nome: 'Pablo',
+            cargo: 'Scrum Master',
+            linkedin: 'https://github.com/Pablo-Casagrande',
+            imagem: 'https://github.com/Pablo-Casagrande.png',
+        },
+    ];
+    return (
+        <>
+            <div className="bg-[#C9DBDB]  flex w-full pr-5 gap-20">
 
-            <article className="
+
+                <article className="
             flex 
             gap-20
             flex-col 
             justify-end
             pb-30
-            pr-29
-            ">
-                <section>
-                    <h1 className="
+            pr-29">
+                    <section>
+                        <h1 className="
                     font-bold
                     text-5xl
-                    ">Bem Vindo ao Conect</h1>
-                </section>
+                    py-6
+                    px-6">
+                            Sobre o Connect</h1>
+                    </section>
+                    <div className="flex ">
+                        <img className=""
+                        src="https://ik.imagekit.io/gqta2uhtht/CnP_07072025_120113.png?updatedAt=1751900551928" alt="ASKKKKKKKKKKKKKKKKKKKKKKKKKKKK" />
 
-                <section>
-                    <p className="
-                    font-light
-                    text-xl">Um sistema de CRM feito para conectar pessoas e negócios, de forma simples rápida e eficiente </p>
-                </section>
-
-                <section className="
-                flex">
-                    <div className="
+                        <div>
+                            <section className="flex">
+                                <div className="
                     flex
-                    text-[#ACADB1]
-                    border-[#F0F1F6]
-                    bg-[#F0F1F6]
-                    border
-                    text-xl
+                    flex-col
+                    gap-4
                     px-5
-                    pr-13
+                    pr-13                       
                     py-4
-                    rounded-l-xl
-                    justify-center
-                    items-center">
-                        <p>Conheça nossos Clientes</p>
+                    ">
+                                    <h2>Ele oferece:</h2>
+                                    <ul className="list-disc ml-5">
+                                        <li>Gestão inteligente de clientes: Centraliza informações essenciais dos clientes, histórico de interações e dados de contato para um atendimento personalizado.</li>
+                                        <li>Gestão de oportunidades: Permite registrar e acompanhar cada etapa do funil de vendas, transformando leads em negócios concretos.</li>
+                                        <li>Simplicidade, agilidade e eficiência: Desenvolvido com tecnologias modernas para otimizar o tempo, reduzir tarefas repetitivas e aumentar a produtividade de equipes comerciais e gestores.</li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </div>
                     </div>
 
-                    <div className="
-                    bg-gray-950
-                    text-white
-                    text-xl
-                    flex
-                    border
-                    pl-8
-                    px-6
-                    py-3
-                    rounded-lg
-                    justify-center
-                    items-center
-                    gap-2">
-                        <p className="">Comece</p>
-                        <FaArrowRightLong color="white"/>
-                    </div>
-                </section>
-            </article>
-        </div>
-        <div className="bg-gray-50 flex flex-row-reverse pb-3 ">
-            <img className="w-[200px] h-auto object-cover" src="https://ik.imagekit.io/gqta2uhtht/square%20(1).png?updatedAt=1751650067419" alt="enfeite" />
-        </div>
-    </>
-  )
+                    <section>
+                        <p className="font-bold text-xl px-6">
+                            O CRM Connect é uma plataforma para gerenciar clientes e impulsionar resultados.
+                        </p>
+                    </section>
+                </article>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 py-10">
+                <h1 className="text-3xl font-bold text-center  mb-8">
+                    Equipe Desenvolvedora do Projeto
+                </h1>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+                    {membros.map((membro) => (
+                        <ColaboradorCard
+                            key={membro.nome}
+                            nome={membro.nome}
+                            cargo={membro.cargo}
+                            linkedin={membro.linkedin}
+                            imagem={membro.imagem}
+                        />
+                    ))}
+                </div>
+            </div>
+
+
+
+        </>
+    )
 }
 
 export default Home
